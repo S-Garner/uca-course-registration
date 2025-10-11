@@ -15,18 +15,7 @@ import edu.uca.registration.app.Menu;
 import edu.uca.registration.util.*;
 
 public class Main {
-    // ---- Global state (intentionally messy for refactor) ----
     static Session session;
-    static Student student;
-    static Course course;
-    static Map<String, Student> students = new LinkedHashMap<>();
-    static Map<String, Course> courses = new LinkedHashMap<>();
-    static List<String> auditLog = new ArrayList<>();
-
-    // ---- CSV "persistence" files ----
-    static final String STUDENTS_CSV = "students.csv";
-    static final String COURSES_CSV = "courses.csv";
-    static final String ENROLLMENTS_CSV = "enrollments.csv";
 
     public static void main(String[] args) throws IOException {
         session = new Session();
