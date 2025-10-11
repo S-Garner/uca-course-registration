@@ -51,14 +51,4 @@ public class Main {
 
         Utils.println("Goodbye!");
     }
-
-    /*
-    // -------------------- Demo data --------------------
-    private static void seedDemoData() {
-        students.put("B001", new Student("B001", "Alice", "alice@uca.edu"));
-        students.put("B002", new Student("B002", "Brian", "brian@uca.edu"));
-        courses.put("CSCI4490", new Course("CSCI4490", "Software Engineering", 2));
-        courses.put("MATH1496", new Course("MATH1496", "Calculus I", 50));
-    }
-    */
 }
