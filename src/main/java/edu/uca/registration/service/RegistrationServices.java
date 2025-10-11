@@ -1,7 +1,7 @@
 package edu.uca.registration.service;
 
 import edu.uca.registration.model.*;
-import edu.uca.registration.repo.Log;
+import edu.uca.registration.util.Log;
 import edu.uca.registration.util.*;
 
 public class RegistrationServices {

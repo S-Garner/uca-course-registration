@@ -1,4 +1,4 @@
-package edu.uca.registration.repo;
+package edu.uca.registration.util;
 
 import edu.uca.registration.model.Session;
 

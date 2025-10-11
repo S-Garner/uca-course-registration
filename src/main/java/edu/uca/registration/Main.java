@@ -7,7 +7,7 @@ import edu.uca.registration.model.Course;
 import edu.uca.registration.model.Student;
 import edu.uca.registration.repo.CourseRepo;
 import edu.uca.registration.repo.EnrollmentRepo;
-import edu.uca.registration.repo.Log;
+import edu.uca.registration.util.Log;
 import edu.uca.registration.repo.StudentRepo;
 import edu.uca.registration.model.Session;
 import edu.uca.registration.app.Menu;
@@ -27,8 +27,10 @@ public class Main {
     static final String COURSES_CSV = "courses.csv";
     static final String ENROLLMENTS_CSV = "enrollments.csv";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         session = new Session();
+
+        CsvToJsonConverter.convertAll();
 
         CourseRepo courseRepo = new CourseRepo();
         StudentRepo studentRepo = new StudentRepo();
@@ -50,16 +52,24 @@ public class Main {
         Utils.println("=== UCA Course Registration (Baseline) ===");
         Utils.println("NOTE: This code is intentionally messy. You'll refactor it.");
         
+        /*
         session.setStudents(studentRepo.load());
         session.setCourses(courseRepo.load());
 
         enrollmentRepo.load(session);
+        */
+
+        Transaction.load(session);
 
         Menu.menuLoop(session);
 
+        /* 
         studentRepo.save(session.getStudents());
         courseRepo.save(session.getCourses());
         enrollmentRepo.save(session);
+        */
+
+        Transaction.save(session);
 
         log.write(session);
 

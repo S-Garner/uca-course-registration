@@ -24,6 +24,8 @@ public class Menu {
             Utils.println("4) Drop student from course");
             Utils.println("5) List students");
             Utils.println("6) List courses");
+            Utils.println("7) Reload from files");
+            Utils.println("8) Save current sessoin");
             Utils.println("0) Exit");
             Utils.println("Choose: ");
 
@@ -41,6 +43,10 @@ public class Menu {
                 case "5": listStudents(sessionObj.getStudents());
                     break;
                 case "6": listCourses(sessionObj.getCourses());
+                    break;
+                case "7": load(sessionObj);
+                    break;
+                case "8": save(sessionObj);
                     break;
                 case "0":
                     return;
@@ -132,6 +138,14 @@ public class Menu {
                     + " enrolled=" + c.getRoster().size()
                     + " wait=" + c.getWaitlist().size());
         }
+    }
+
+    private static void load(Session sessionObj) {
+        Transaction.load(sessionObj);
+    }
+
+    private static void save(Session sessionObj) {
+        Transaction.save(sessionObj);
     }
 
 }
