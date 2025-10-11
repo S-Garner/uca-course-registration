@@ -1,14 +1,7 @@
 package edu.uca.registration;
 
 import java.io.*;
-import java.time.LocalDateTime;
-import java.util.*;
-import edu.uca.registration.model.Course;
-import edu.uca.registration.model.Student;
-import edu.uca.registration.repo.CourseRepo;
-import edu.uca.registration.repo.EnrollmentRepo;
 import edu.uca.registration.util.Log;
-import edu.uca.registration.repo.StudentRepo;
 import edu.uca.registration.model.Session;
 import edu.uca.registration.app.Demo;
 import edu.uca.registration.app.Menu;
