@@ -10,6 +10,7 @@ import edu.uca.registration.repo.EnrollmentRepo;
 import edu.uca.registration.util.Log;
 import edu.uca.registration.repo.StudentRepo;
 import edu.uca.registration.model.Session;
+import edu.uca.registration.app.Demo;
 import edu.uca.registration.app.Menu;
 import edu.uca.registration.util.*;
 
@@ -32,54 +33,24 @@ public class Main {
 
         CsvToJsonConverter.convertAll();
 
-        CourseRepo courseRepo = new CourseRepo();
-        StudentRepo studentRepo = new StudentRepo();
-        EnrollmentRepo enrollmentRepo = new EnrollmentRepo();
-
         Log log = new Log();
 
         boolean demo = args.length > 0 && "--demo".equalsIgnoreCase(args[0]);
 
-        /*
-        if (demo) {
-            seedDemoData();
-            audit("SEED demo data");
-        } else {
-            loadAll();
-        }
-        */
+        Demo.seedDemoData(session, demo);
 
-        Utils.println("=== UCA Course Registration (Baseline) ===");
-        Utils.println("NOTE: This code is intentionally messy. You'll refactor it.");
-        
-        /*
-        session.setStudents(studentRepo.load());
-        session.setCourses(courseRepo.load());
-
-        enrollmentRepo.load(session);
-        */
+        Utils.println("\n=== UCA Course Registration ===\n");
 
         Transaction.load(session);
 
         Menu.menuLoop(session);
 
-        /* 
-        studentRepo.save(session.getStudents());
-        courseRepo.save(session.getCourses());
-        enrollmentRepo.save(session);
-        */
-
         Transaction.save(session);
 
         log.write(session);
 
-        //saveAll();
         Utils.println("Goodbye!");
     }
-    // -------------------- Persistence --------------------
-    //private static void loadAll() { loadStudents(); loadCourses(); loadEnrollments(); }
-
-    //private static void saveAll() { saveStudents(); saveCourses(); saveEnrollments(); }
 
     /*
     // -------------------- Demo data --------------------
