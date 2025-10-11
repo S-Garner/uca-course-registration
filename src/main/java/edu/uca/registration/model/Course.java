@@ -3,27 +3,30 @@ package edu.uca.registration.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course {
-    private String code, title;
+public class Course implements Registrable {
+    private String id;
+    private String name;
     private int capacity;
 
     private List<String> roster = new ArrayList<>();
     private List<String> waitlist = new ArrayList<>();
 
-    public Course(String code,
-                  String title,
-                  int capacity) {
-        this.code = code;
-        this.title = title;
+    public Course() {}
+
+    public Course(String id, String name, int capacity) {
+        this.id = id;
+        this.name = name;
         this.capacity = capacity;
     }
 
-    public String getCode() {
-        return code;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public String getTitle() {
-        return title;
+    @Override
+    public String getName() {
+        return name;
     }
 
     public int getCapacity() {

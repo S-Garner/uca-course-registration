@@ -2,8 +2,10 @@ package edu.uca.registration.model;
 
 import java.io.*;
 
-public class Student {
+public class Student implements Registrable {
     private String id, name, email;
+
+    public Student() {};
 
     public Student (String id, String name, String email) {
         this.id = id;
@@ -32,10 +34,12 @@ public class Student {
         return email;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

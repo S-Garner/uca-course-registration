@@ -23,3 +23,10 @@ courses.csv
 enrollments.csv
 
 .venv
+*.pdf
+
+data/
+courses.json
+audit.log
+courses.json
+students.json

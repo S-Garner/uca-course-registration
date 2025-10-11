@@ -6,12 +6,15 @@ import java.util.Scanner;
 import edu.uca.registration.model.Course;
 import edu.uca.registration.model.Session;
 import edu.uca.registration.model.Student;
+import edu.uca.registration.service.RegistrationServices;
 import edu.uca.registration.util.*;
 
 public class Menu {
 
     public static void menuLoop(Session sessionObj) {
         Scanner sc = new Scanner(System.in);
+
+        createSessionName(sessionObj, sc);
 
         while (true) {
             Utils.println("\nMenu:");
@@ -60,9 +63,7 @@ public class Menu {
 
         Student s = new Student(id, name, email);
 
-        sessionObj.getStudents().put(id, s);
-
-        Utils.audit("ADD_STUDENT" + id, sessionObj.getAuditLog());
+        RegistrationServices.addStudentService(s, sessionObj);
     }
 
     private static void addCourseUI(Session sessionObj, Scanner sc) {
@@ -77,9 +78,7 @@ public class Menu {
 
         Course c = new Course(code, title, cap);
 
-        sessionObj.getCourses().put(code, c);
-
-        Utils.audit("ADD_COURSE" + code, sessionObj.getAuditLog());
+        RegistrationServices.addCourseService(c, sessionObj);
     }
 
     private static void enrollUI(Session sessionObj, Scanner sc) {
@@ -91,25 +90,7 @@ public class Menu {
 
         Course c = sessionObj.getCourses().get(cc);
 
-        if (c == null) {
-            Utils.println("No such course");
-            return;
-        } else if (c.getRoster().contains(sid)) {
-            Utils.println("Already enrolled");
-            return;
-        } else if (c.getWaitlist().contains(sid)) {
-            Utils.println("Already waitlisted");
-            return;
-        } else {
-            if (c.getRoster().size() >= c.getCapacity()) {
-                c.getWaitlist().add(sid);
-                Utils.audit("WAITLIST" + sid + "->" + cc, sessionObj.getAuditLog());
-            } else {
-                c.getRoster().add(sid);
-                Utils.audit("ENROLL " + sid + "->" + cc, sessionObj.getAuditLog());
-                Utils.println("Enrolled.");
-            }
-        }
+        RegistrationServices.enrollService(sid, c, sessionObj);
     }
 
     private static void dropUI(Session sessionObj, Scanner sc) {
@@ -121,30 +102,16 @@ public class Menu {
 
         Course c = sessionObj.getCourses().get(cc);
 
-        if (c == null) {
-            Utils.println("No such course");
-            return;
-        } else {
-            if (c.getRoster().remove(sid)) {
-                Utils.audit("DROP " + sid + " from " + cc, sessionObj.getAuditLog());
+        RegistrationServices.dropService(sid, c, sessionObj);
+    }
 
-                if (!c.getWaitlist().isEmpty()) {
-                    String promote = c.getWaitlist().remove(0);
+    private static void createSessionName(Session sessionObj, Scanner sc) {
+        Utils.println("Please input your session name: ");
 
-                    c.getRoster().add(promote);
+        String sessionName = sc.nextLine().trim();
 
-                    Utils.audit("PROMOTE " + promote + "->" + cc, sessionObj.getAuditLog());
-                    Utils.println("Promoted " + promote + " from waitlist.");
-                } else {
-                    Utils.println("Dropped.");
-                }
-            } else if (c.getWaitlist().remove(sid)) {
-                Utils.audit("WAITLIST_REMOVE " + sid + " " + cc, sessionObj.getAuditLog());
-                Utils.println("Removed from waitlist.");
-            } else {
-                Utils.println("Not enrolled or waitlisted.");
-            }
-        }
+        RegistrationServices.setSessionName(sessionName, sessionObj);
+
     }
 
     private static void listStudents(Map<String, Student> students) {
@@ -159,8 +126,8 @@ public class Menu {
         Utils.println("Courses:");
 
         for (Course c : courses.values()) {
-            Utils.println(" - " + c.getCode()
-                    + " " + c.getTitle()
+            Utils.println(" - " + c.getId()
+                    + " " + c.getName()
                     + " cap=" + c.getCapacity()
                     + " enrolled=" + c.getRoster().size()
                     + " wait=" + c.getWaitlist().size());
