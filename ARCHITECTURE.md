@@ -10,3 +10,6 @@ With this program you have the ability to:
 - Enroll or Drop Students from Courses
 - Save the current session to a file
 - Load from a file
+
+## Package Diagram
+![package_diagram](https://github.com/S-Garner/uca-course-registration/blob/master/PackageDiagram.png)
