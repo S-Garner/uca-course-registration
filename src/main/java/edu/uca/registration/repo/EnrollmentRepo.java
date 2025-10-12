@@ -13,7 +13,7 @@ import edu.uca.registration.model.Enrollment;
 import edu.uca.registration.model.Session;
 
 public class EnrollmentRepo {
-    private static String FILE_PATH = "data/enrollments.json";
+    private static String FILE_PATH = ConfigManager.getPath("enrollments");
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -40,7 +40,7 @@ public class EnrollmentRepo {
                 mapper.readValue(file, new TypeReference<List<Enrollment>>() {});
 
             Map<String, Course> courses = session.getCourses();
-            // clear existing lists to avoid duplicate accumulation
+            
             for (Course c : courses.values()) {
                 c.getRoster().clear();
                 c.getWaitlist().clear();

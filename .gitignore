@@ -25,7 +25,7 @@ enrollments.csv
 .venv
 *.pdf
 
-data/
+enrollments.json
 courses.json
 audit.log
 courses.json

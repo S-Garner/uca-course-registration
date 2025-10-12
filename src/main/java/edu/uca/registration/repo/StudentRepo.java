@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class StudentRepo extends JsonRepository<Student> {
     public StudentRepo() {
-        super("data/students.json");
+        //super("data/students.json");
+        super(ConfigManager.getPath("students"));
     }
 
     @Override
