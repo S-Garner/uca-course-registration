@@ -1,0 +1,12 @@
+# Major Changes
+- Modularize all base code
+- Break up classes in their own packages
+- Fix formatting
+- Imrpoved error detecting
+- Finalized I/O data
+- Seperated Demo class for demo instruction
+- Interfaces: Repository and Registrable
+- Changed imports 
+- Cleaned up Main 
+- Added configurations; data/config.json, repo/ConfigManager.java, repo/CourseRepo.java
+- Added Logging
