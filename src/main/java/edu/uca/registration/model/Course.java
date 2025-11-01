@@ -42,7 +42,14 @@ public class Course implements Registrable {
     }
 
     public void addToRoster(String studentID) {
-        roster.add(studentID);
+        if (roster.size() >= capacity) {
+            System.out.println("Roster full, adding to waitlist");
+            addToWaitlist(studentID);
+            return;
+        }
+        else {
+            roster.add(studentID);
+        }
     }
 
     public void addToWaitlist(String studentID) {
