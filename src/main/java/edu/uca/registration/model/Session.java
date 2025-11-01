@@ -12,6 +12,13 @@ public class Session {
 
     private String sessionName;
 
+    public Session(String sessionName) {
+        this.sessionName = sessionName;
+    }
+
+    public Session() {
+    }
+
     public Map<String, Student> getStudents() {
         return students;
     }
