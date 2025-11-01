@@ -20,11 +20,11 @@ public class EnrollmentRepo {
     public EnrollmentRepo() {};
 
     public EnrollmentRepo(String filePath) {
-        this.FILE_PATH = filePath;
+        FILE_PATH = filePath;
     }
 
     public void setFilePath(String path) {
-        this.FILE_PATH = path;
+        FILE_PATH = path;
     }
 
     public String getFilePath() {
