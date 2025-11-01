@@ -9,10 +9,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConfigManager {
-    private static final String CONFIG_PATH = "data/config.json";
+    private static String CONFIG_PATH = "data/config.json";
     private static final Map<String, String> paths = new HashMap<>();
 
     static {
+        loadConfig();
+    }
+
+    public static void setConfigPath(String path) {
+        CONFIG_PATH = path;
         loadConfig();
     }
 
