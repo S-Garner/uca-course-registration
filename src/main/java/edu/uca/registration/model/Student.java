@@ -1,6 +1,5 @@
 package edu.uca.registration.model;
 
-import java.io.*;
 
 public class Student implements Registrable {
     private String id, name, email;
