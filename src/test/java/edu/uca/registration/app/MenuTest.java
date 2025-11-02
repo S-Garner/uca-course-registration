@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import edu.uca.registration.model.Course;
 import edu.uca.registration.model.Session;
 import edu.uca.registration.model.Student;
+import edu.uca.registration.repo.ConfigManager;
 
 public class MenuTest {
 
@@ -135,6 +136,8 @@ public class MenuTest {
 
     @Test
     public void testSaveAndLoadUI() {
+        ConfigManager.setConfigPath("data/test/config.json");
+
         File studentsFile = new File("data/students.json");
         File coursesFile = new File("data/courses.json");
         File enrollmentsFile = new File("data/enrollments.json");
