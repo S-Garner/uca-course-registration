@@ -31,4 +31,6 @@ mvn test
 
 ## Terminal Output Running Tests
 ![Terminal_Output](https://github.com/S-Garner/uca-course-registration/blob/testing-branch/testTerminalOutput.png)
-```
+
+## Test Strategy
+![Test_Strategy](https://github.com/S-Garner/uca-course-registration/blob/testing-branch/SE_Test_Strategy.pdf)
