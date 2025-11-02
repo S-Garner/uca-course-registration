@@ -28,4 +28,7 @@ mvn test
 
 ## Project Report
 ![Project_Report](https://github.com/S-Garner/uca-course-registration/blob/master/Assignment%203_%20Software%20Engineering.pdf)
+
+## Terminal Output Running Tests
+![Terminal_Output](https://github.com/S-Garner/uca-course-registration/blob/testing-branch/testTerminalOutput.png)
 ```
