@@ -7,7 +7,8 @@ import edu.uca.registration.model.Course;
 import edu.uca.registration.model.Session;
 import edu.uca.registration.model.Student;
 import edu.uca.registration.service.RegistrationServices;
-import edu.uca.registration.util.*;
+import edu.uca.registration.util.Transaction;
+import edu.uca.registration.util.Utils;
 
 public class Menu {
 
@@ -57,7 +58,7 @@ public class Menu {
         }
     }
 
-    private static void addStudentUI(Session sessionObj, Scanner sc) {
+    static void addStudentUI(Session sessionObj, Scanner sc) {
         Utils.print("Banner ID: ");
         String id = sc.nextLine().trim();
 
@@ -72,7 +73,7 @@ public class Menu {
         RegistrationServices.addStudentService(s, sessionObj);
     }
 
-    private static void addCourseUI(Session sessionObj, Scanner sc) {
+    static void addCourseUI(Session sessionObj, Scanner sc) {
         Utils.print("Course code: ");
         String code = sc.nextLine().trim();
 
@@ -87,7 +88,7 @@ public class Menu {
         RegistrationServices.addCourseService(c, sessionObj);
     }
 
-    private static void enrollUI(Session sessionObj, Scanner sc) {
+    static void enrollUI(Session sessionObj, Scanner sc) {
         Utils.print("Student ID: ");
         String sid = sc.nextLine().trim();
 
@@ -99,7 +100,7 @@ public class Menu {
         RegistrationServices.enrollService(sid, c, sessionObj);
     }
 
-    private static void dropUI(Session sessionObj, Scanner sc) {
+    static void dropUI(Session sessionObj, Scanner sc) {
         Utils.print("Student ID: ");
         String sid = sc.nextLine().trim();
 
@@ -111,7 +112,7 @@ public class Menu {
         RegistrationServices.dropService(sid, c, sessionObj);
     }
 
-    private static void createSessionName(Session sessionObj, Scanner sc) {
+    static void createSessionName(Session sessionObj, Scanner sc) {
         Utils.println("Please input your session name: ");
 
         String sessionName = sc.nextLine().trim();
@@ -120,7 +121,7 @@ public class Menu {
 
     }
 
-    private static void listStudents(Map<String, Student> students) {
+    static void listStudents(Map<String, Student> students) {
         Utils.println("Students:");
 
         for (Student s : students.values()) {
@@ -128,7 +129,7 @@ public class Menu {
         }
     }
 
-    private static void listCourses(Map<String, Course> courses) {
+    static void listCourses(Map<String, Course> courses) {
         Utils.println("Courses:");
 
         for (Course c : courses.values()) {
@@ -140,11 +141,11 @@ public class Menu {
         }
     }
 
-    private static void load(Session sessionObj) {
+    static void load(Session sessionObj) {
         Transaction.load(sessionObj);
     }
 
-    private static void save(Session sessionObj) {
+    static void save(Session sessionObj) {
         Transaction.save(sessionObj);
     }
 

@@ -1,7 +1,8 @@
 package edu.uca.registration.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class EnrollmentTest {
     @Test
@@ -37,5 +38,15 @@ public class EnrollmentTest {
         Enrollment enrollment = new Enrollment("CSCI 4490", "B0001", "enrolled");
         enrollment.setStatus("completed");
         assertEquals("completed", enrollment.getStatus()); 
+    }
+
+    @Test
+    void enrollLargeAmountOfStudents() {
+        for (int i = 0; i < 1000; i++) {
+            Enrollment enrollment = new Enrollment("CSCI 4490", "B" + String.format("%04d", i), "enrolled");
+            assertEquals("CSCI 4490", enrollment.getCourseCode());
+            assertEquals("B" + String.format("%04d", i), enrollment.getStudentId());
+            assertEquals("enrolled", enrollment.getStatus());
+        }
     }
 }
