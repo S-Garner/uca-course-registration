@@ -9,6 +9,11 @@ mvn clean package
 java -jar target/UCA-Registration.jar
 ```
 
+## Testing
+```
+mvn test
+```
+
 ## Architecture.md 
 ![Architecture](https://github.com/S-Garner/uca-course-registration/blob/master/ARCHITECTURE.md)
 
